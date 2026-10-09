@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.TargetPopup"
+             VerticalOptions="Center"
+             HorizontalOptions="Fill">
+    <Border x:Name="Card" Padding="18" MaximumHeightRequest="640" BackgroundColor="#FFFCF7" VerticalOptions="Center">
+        <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+            <Label Text="每日营养目标" FontSize="24" FontAttributes="Bold" />
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Spacing="10">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="热量（千卡）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="CaloriesEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="蛋白质（克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="ProteinEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="脂肪（克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="FatEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="碳水（克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="CarbsEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="膳食纤维（克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="FiberEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="钠（毫克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="SodiumEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="钙（毫克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="CalciumEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="铁（毫克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="IronEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="锌（毫克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="ZincEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="钾（毫克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="PotassiumEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="维生素B1（毫克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="VitaminB1Entry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="维生素C（毫克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="VitaminCEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="维生素D（微克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="VitaminDEntry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Omega-3（克）" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="Omega3Entry" Keyboard="Text" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+            <VerticalStackLayout Grid.Row="2" Spacing="8">
+                <Label x:Name="ErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                    <Button Text="取消" Clicked="OnCancel" />
+                    <Button Grid.Column="1" Text="保存" Clicked="OnSave" BackgroundColor="#22C55E" TextColor="White" />
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
+</ContentView>

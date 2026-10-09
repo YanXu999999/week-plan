@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.WeekPage">
+    <Grid RowDefinitions="*,Auto">
+        <Grid>
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#F7F8FB" Offset="0" />
+                        <GradientStop Color="#F4FBF7" Offset="0.42" />
+                        <GradientStop Color="#D8F3E6" Offset="1" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+            <Ellipse Fill="#D9F5E8" WidthRequest="260" HeightRequest="180" HorizontalOptions="End" VerticalOptions="Start" Margin="80,-50,-70,0" Opacity="0.85" />
+            <Ellipse Fill="#C6EBD8" WidthRequest="280" HeightRequest="200" HorizontalOptions="Start" VerticalOptions="End" Margin="-90,0,0,40" Opacity="0.7" />
+            <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="22,16,22,8" RowSpacing="18">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label x:Name="TitleLabel" Text="今日任务" FontSize="32" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="Center" />
+                    <Border x:Name="RefreshButton" Grid.Column="1" WidthRequest="44" HeightRequest="44"
+                            BackgroundColor="White" Stroke="#ECEEF2" StrokeThickness="1" HorizontalOptions="End" VerticalOptions="Center">
+                        <Label Text="↻" FontSize="20" TextColor="#1B1F2A" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                    </Border>
+                </Grid>
+                <Grid x:Name="DayBar" Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*,*" ColumnSpacing="6" />
+                <Grid Grid.Row="2">
+                    <ScrollView x:Name="TaskScroll">
+                        <VerticalStackLayout Spacing="14">
+                            <Border x:Name="NutritionCard" Padding="8" BackgroundColor="White" IsVisible="False">
+                                <VerticalStackLayout Spacing="12">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <VerticalStackLayout Spacing="2" VerticalOptions="Center">
+                                            <Label Text="摄入营养" FontSize="18" FontAttributes="Bold" TextColor="#1B1F2A" />
+                                            <Label x:Name="NutritionDateLabel" FontSize="12" TextColor="#8E95A3" />
+                                        </VerticalStackLayout>
+                                        <HorizontalStackLayout Grid.Column="1" Spacing="8" VerticalOptions="Center">
+                                            <Border x:Name="AddIntakeButton" WidthRequest="44" HeightRequest="44"
+                                                    BackgroundColor="#F4FBF7" Stroke="#D8F3E6" StrokeThickness="1">
+                                                <Label Text="+" FontSize="24" TextColor="#1F6B4A"
+                                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                            </Border>
+                                            <Border x:Name="NutritionDetailButton" WidthRequest="44" HeightRequest="44"
+                                                    BackgroundColor="White" Stroke="#ECEEF2" StrokeThickness="1" />
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="6" RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                                        <Border x:Name="CalorieCell" Padding="4" BackgroundColor="#F7F8FB">
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="热量" FontSize="13" TextColor="#8E95A3" />
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label x:Name="CaloriePairLabel" FontSize="16" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="End" />
+                                                    <Label Text="千卡" FontSize="12" TextColor="#8E95A3" VerticalOptions="End" />
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                        <Border x:Name="ProteinCell" Grid.Column="1" Padding="4" BackgroundColor="#F7F8FB">
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="蛋白质" FontSize="13" TextColor="#8E95A3" />
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label x:Name="ProteinPairLabel" FontSize="16" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="End" />
+                                                    <Label Text="克" FontSize="12" TextColor="#8E95A3" VerticalOptions="End" />
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                        <Border x:Name="FatCell" Grid.Row="1" Padding="4" BackgroundColor="#F7F8FB">
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="脂肪" FontSize="13" TextColor="#8E95A3" />
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label x:Name="FatPairLabel" FontSize="16" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="End" />
+                                                    <Label Text="克" FontSize="12" TextColor="#8E95A3" VerticalOptions="End" />
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                        <Border x:Name="CarbsCell" Grid.Row="1" Grid.Column="1" Padding="4" BackgroundColor="#F7F8FB">
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="碳水" FontSize="13" TextColor="#8E95A3" />
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label x:Name="CarbsPairLabel" FontSize="16" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="End" />
+                                                    <Label Text="克" FontSize="12" TextColor="#8E95A3" VerticalOptions="End" />
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                        <Border x:Name="FiberCell" Grid.Row="2" Padding="4" BackgroundColor="#F7F8FB">
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="膳食纤维" FontSize="13" TextColor="#8E95A3" />
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label x:Name="FiberPairLabel" FontSize="16" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="End" />
+                                                    <Label Text="克" FontSize="12" TextColor="#8E95A3" VerticalOptions="End" />
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                        <Border x:Name="SodiumCell" Grid.Row="2" Grid.Column="1" Padding="4" BackgroundColor="#F7F8FB">
+                                            <VerticalStackLayout Spacing="2">
+                                                <Label Text="钠" FontSize="13" TextColor="#8E95A3" />
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label x:Name="SodiumPairLabel" FontSize="16" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="End" />
+                                                    <Label Text="毫克" FontSize="12" TextColor="#8E95A3" VerticalOptions="End" />
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </Border>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="BodyReminderCard" Padding="16" BackgroundColor="#F4FBF7" Stroke="#22C55E" StrokeThickness="1" IsVisible="False">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="记录身体数据" FontSize="18" FontAttributes="Bold" TextColor="#1B1F2A" />
+                                    <Label Text="本周日该量一次腰围、臂围、胸围和腿围。" FontSize="14" TextColor="#1F6B4A" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <VerticalStackLayout x:Name="TaskHost" Spacing="14" />
+                            <Label x:Name="HomeEmptyLabel" Text="这一天还没有任务" FontSize="16" TextColor="#8E95A3"
+                                   HorizontalOptions="Center" IsVisible="False" />
+                        </VerticalStackLayout>
+                    </ScrollView>
+                    <Label x:Name="EmptyLabel" Text="这一天还没有任务" FontSize="16" TextColor="#8E95A3"
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                    <ScrollView x:Name="MineHost" IsVisible="False">
+                        <VerticalStackLayout Spacing="12" Padding="0,28,0,0">
+                            <Border x:Name="MineCard" Padding="22" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="训练周" FontSize="24" FontAttributes="Bold" TextColor="#1B1F2A" />
+                                    <Label Text="吃和练都记在这台手机上。一周七天循环，完成状态按当天分开。"
+                                           TextColor="#8E95A3" FontSize="15" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="ProfileCard" Padding="22" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="我的数据" FontSize="24" FontAttributes="Bold" TextColor="#1B1F2A" />
+                                    <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,Auto,Auto" ColumnSpacing="6">
+                                        <Label Text="年龄" FontSize="13" TextColor="#8E95A3" VerticalOptions="Center" />
+                                        <Entry x:Name="AgeEntry" Grid.Column="1" Placeholder="岁" Keyboard="Numeric" Focused="OnProfileEntryFocused" Unfocused="OnAgeUnfocused" VerticalOptions="Center" />
+                                        <Label Text="身高" Grid.Column="2" FontSize="13" TextColor="#8E95A3" VerticalOptions="Center" />
+                                        <Entry x:Name="HeightEntry" Grid.Column="3" Placeholder="厘米" Keyboard="Text" Focused="OnProfileEntryFocused" Unfocused="OnHeightUnfocused" VerticalOptions="Center" />
+                                        <Label Text="性别" Grid.Column="4" FontSize="13" TextColor="#8E95A3" VerticalOptions="Center" />
+                                        <Button x:Name="MaleButton" Grid.Column="5" Text="男" Clicked="OnSexClicked"
+                                                BackgroundColor="#F4FBF7" TextColor="#1F6B4A" FontAttributes="Bold"
+                                                BorderWidth="0" Padding="10,6" VerticalOptions="Center" />
+                                        <Button x:Name="FemaleButton" Grid.Column="6" Text="女" Clicked="OnSexClicked"
+                                                BackgroundColor="Transparent" TextColor="#8E95A3"
+                                                BorderWidth="0" Padding="10,6" VerticalOptions="Center" />
+                                    </Grid>
+                                    <Label Text="基础代谢" FontSize="13" TextColor="#8E95A3" />
+                                    <Label x:Name="BasalLabel" Text="缺少年龄、身高、体重" FontSize="16" TextColor="#8C3A32" />
+                                    <Label Text="体重（最近7次）" FontSize="13" TextColor="#8E95A3" />
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                        <Label x:Name="WeightAverageLabel" Text="还没有体重" FontSize="16" TextColor="#1B1F2A" VerticalOptions="Center" />
+                                        <Button x:Name="WeightChartButton" Grid.Column="1" Text="图" Clicked="OnOpenWeightChart"
+                                                WidthRequest="36" HeightRequest="36" CornerRadius="18" Padding="0"
+                                                BackgroundColor="#F4FBF7" TextColor="#1F6B4A" FontAttributes="Bold" FontSize="14" />
+                                    </Grid>
+                                    <Label x:Name="ProfileErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="BodyCard" Padding="22" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="8">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="身体数据" FontSize="24" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="Center" />
+                                        <Button Grid.Column="1" Text="记录" Clicked="OnOpenBodyChart"
+                                                BackgroundColor="#22C55E" TextColor="White" CornerRadius="18" HeightRequest="36"
+                                                FontAttributes="Bold" HorizontalOptions="End" Padding="16,0" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="72,*">
+                                        <Label Text="腰围" TextColor="#8E95A3" FontSize="15" />
+                                        <Label x:Name="BodyWaistLabel" Grid.Column="1" TextColor="#1B1F2A" FontSize="16" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="72,*">
+                                        <Label Text="左臂围" TextColor="#8E95A3" FontSize="15" />
+                                        <Label x:Name="BodyLeftArmLabel" Grid.Column="1" TextColor="#1B1F2A" FontSize="16" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="72,*">
+                                        <Label Text="右臂围" TextColor="#8E95A3" FontSize="15" />
+                                        <Label x:Name="BodyRightArmLabel" Grid.Column="1" TextColor="#1B1F2A" FontSize="16" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="72,*">
+                                        <Label Text="胸围" TextColor="#8E95A3" FontSize="15" />
+                                        <Label x:Name="BodyChestLabel" Grid.Column="1" TextColor="#1B1F2A" FontSize="16" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="72,*">
+                                        <Label Text="左腿围" TextColor="#8E95A3" FontSize="15" />
+                                        <Label x:Name="BodyLeftThighLabel" Grid.Column="1" TextColor="#1B1F2A" FontSize="16" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="72,*">
+                                        <Label Text="右腿围" TextColor="#8E95A3" FontSize="15" />
+                                        <Label x:Name="BodyRightThighLabel" Grid.Column="1" TextColor="#1B1F2A" FontSize="16" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="TargetCard" Padding="22" BackgroundColor="White">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="每日营养目标" FontSize="24" FontAttributes="Bold" TextColor="#1B1F2A" />
+                                    <VerticalStackLayout x:Name="MineTargetHost" Spacing="4" />
+                                    <Button Text="修改目标" Clicked="OnEditTargets"
+                                            BackgroundColor="#22C55E" TextColor="White" CornerRadius="22" HeightRequest="48"
+                                            FontAttributes="Bold" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </Grid>
+                <Button x:Name="AddButton" Grid.Row="3" Text="+ 新建任务" Clicked="OnAddClicked"
+                        BackgroundColor="#FF7A18" TextColor="White" CornerRadius="28" HeightRequest="56"
+                        FontSize="18" FontAttributes="Bold" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" RowDefinitions="1,*" BackgroundColor="White">
+            <BoxView Color="#F0F2F5" />
+            <Grid x:Name="TabBar" Grid.Row="1" ColumnDefinitions="*,*,*" Padding="0,8,0,10" />
+        </Grid>
+    </Grid>
+</ContentView>

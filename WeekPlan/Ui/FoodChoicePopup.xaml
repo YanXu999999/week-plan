@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.FoodChoicePopup"
+             VerticalOptions="Fill"
+             HorizontalOptions="Fill">
+    <Grid>
+    <Border x:Name="Card" Padding="18" BackgroundColor="#FFFCF7" VerticalOptions="Center">
+        <VerticalStackLayout Spacing="12">
+            <Label x:Name="MessageLabel" FontSize="22" FontAttributes="Bold" LineBreakMode="WordWrap" />
+            <Label x:Name="SimilarHeadingLabel" FontSize="14" TextColor="#6F6A62" />
+            <Label x:Name="EmptyLabel" FontSize="15" TextColor="#6F6A62" IsVisible="False" />
+            <ScrollView MaximumHeightRequest="280">
+                <VerticalStackLayout x:Name="MatchList" Spacing="8" />
+            </ScrollView>
+            <Label x:Name="ErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <Button Text="取消" Clicked="OnCancel" />
+                <Button Grid.Column="1" Text="新增" Clicked="OnCreate" BackgroundColor="#22C55E" TextColor="White" />
+            </Grid>
+        </VerticalStackLayout>
+    </Border>
+    </Grid>
+</ContentView>

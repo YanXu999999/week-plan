@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.TaskEditorPopup"
+             VerticalOptions="Center"
+             HorizontalOptions="Fill">
+    <Border x:Name="Card" Padding="18" BackgroundColor="#FFFCF7">
+        <ScrollView x:Name="EditorScroll" MaximumHeightRequest="640">
+            <VerticalStackLayout Spacing="12">
+                <Label x:Name="HeadingLabel" FontSize="24" FontAttributes="Bold" />
+                <Label x:Name="TypeLabel" FontSize="14" TextColor="#6F6A62" />
+                <Grid x:Name="TypePicker" ColumnDefinitions="*,*" ColumnSpacing="8">
+                    <Button x:Name="StrengthButton" Text="力量训练" FontSize="14" Padding="4,10" Pressed="OnTypePressed" Clicked="OnStrengthClicked" />
+                    <Button x:Name="CardioButton" Grid.Column="1" Text="有氧训练" FontSize="14" Padding="4,10" Pressed="OnTypePressed" Clicked="OnCardioClicked" />
+                </Grid>
+                <VerticalStackLayout Spacing="4">
+                    <Grid x:Name="TitleRow" ColumnDefinitions="*,Auto" ColumnSpacing="0">
+                        <Entry x:Name="TitleEntry" Placeholder="例如：深蹲、跑步" Focused="OnTitleFocused" Unfocused="OnTitleUnfocused" TextChanged="OnTitleTextChanged" />
+                        <Button x:Name="ClearTitleButton" Grid.Column="1" Text="×" IsVisible="False" Pressed="OnClearTitlePressed" Clicked="OnClearTitle"
+                                BackgroundColor="Transparent" TextColor="#8E95A3" BorderWidth="0" FontSize="20"
+                                WidthRequest="32" HeightRequest="32" MinimumWidthRequest="32" MinimumHeightRequest="32" Padding="0" />
+                    </Grid>
+                    <Border x:Name="PickerPanel" IsVisible="False" Padding="0" BackgroundColor="White" Stroke="#E4DED2" StrokeThickness="1">
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="188">
+                            <Border x:Name="CategoryColumn" WidthRequest="76" BackgroundColor="#F4F1EA" StrokeThickness="0" Padding="0">
+                                <ScrollView x:Name="CategoryScroll" VerticalOptions="Fill" VerticalScrollBarVisibility="Never">
+                                    <VerticalStackLayout x:Name="CategoryHost" Spacing="0" />
+                                </ScrollView>
+                            </Border>
+                            <ScrollView x:Name="MoveScroll" Grid.Column="1" VerticalOptions="Fill" VerticalScrollBarVisibility="Default">
+                                <VerticalStackLayout x:Name="MoveHost" Spacing="0" Padding="0,2,0,4" />
+                            </ScrollView>
+                        </Grid>
+                    </Border>
+                    <Label x:Name="ErrorLabel" Text="先写上这条任务" TextColor="#8C3A32" IsVisible="False" />
+                </VerticalStackLayout>
+                <VerticalStackLayout x:Name="FitnessFields" Spacing="12">
+                    <Label Text="组数 1 到 20，间隔 5 到 600 秒。" FontSize="13" TextColor="#6F6A62" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="组数" TextColor="#6F6A62" />
+                            <Label x:Name="SetsLabel" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                            <Grid ColumnDefinitions="*,*">
+                                <Button Text="-" Clicked="OnDecreaseSets" />
+                                <Button Grid.Column="1" Text="+" Clicked="OnIncreaseSets" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label Text="间隔" TextColor="#6F6A62" />
+                            <Label x:Name="RestLabel" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                            <Grid ColumnDefinitions="*,*">
+                                <Button Text="-" Clicked="OnDecreaseRest" />
+                                <Button Grid.Column="1" Text="+" Clicked="OnIncreaseRest" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout x:Name="PresetHost" Spacing="8" />
+                    </ScrollView>
+                </VerticalStackLayout>
+                <VerticalStackLayout x:Name="CardioFields" Spacing="12" IsVisible="False">
+                    <Label Text="时长 1 到 180 分钟。点开始后倒计时。" FontSize="13" TextColor="#6F6A62" />
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="时长" TextColor="#6F6A62" />
+                        <Label x:Name="DurationLabel" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Grid ColumnDefinitions="*,*">
+                            <Button Text="-" Clicked="OnDecreaseDuration" />
+                            <Button Grid.Column="1" Text="+" Clicked="OnIncreaseDuration" />
+                        </Grid>
+                    </VerticalStackLayout>
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout x:Name="DurationPresetHost" Spacing="8" />
+                    </ScrollView>
+                </VerticalStackLayout>
+                <VerticalStackLayout x:Name="StatusFields" Spacing="8">
+                    <Label Text="状态" TextColor="#6F6A62" />
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                        <Button x:Name="NotStartedButton" Text="未完成" Clicked="OnNotStarted" />
+                        <Button x:Name="InProgressButton" Grid.Column="1" Text="进行中" Clicked="OnInProgress" />
+                        <Button x:Name="DoneButton" Grid.Column="2" Text="完成" Clicked="OnDone" />
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                    <Button Text="取消" Clicked="OnCancel" />
+                    <Button Grid.Column="1" Text="保存" Clicked="OnSave" BackgroundColor="#22C55E" TextColor="White" />
+                </Grid>
+                <Button x:Name="DeleteButton" Text="删除" Clicked="OnDelete" BackgroundColor="Transparent" TextColor="#8C3A32" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+</ContentView>

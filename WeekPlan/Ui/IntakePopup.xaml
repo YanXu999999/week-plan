@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.IntakePopup"
+             VerticalOptions="Center"
+             HorizontalOptions="Fill">
+    <Border x:Name="Card" Padding="18" BackgroundColor="#FFFCF7">
+        <Grid RowDefinitions="*,Auto" MaximumHeightRequest="640" RowSpacing="12">
+        <ScrollView>
+            <VerticalStackLayout Spacing="12">
+                <Label x:Name="HeadingLabel" Text="记一笔摄入" FontSize="24" FontAttributes="Bold" />
+                <Border x:Name="FoodCard" Padding="14" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="记食物" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="写下食物和分量，按每 100 克或每 100 毫升折算。" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="NameEntry" Placeholder="例如：鸡胸肉、牛奶" TextChanged="OnNameChanged" />
+                        <Entry x:Name="AmountEntry" Placeholder="分量，例如 200" Keyboard="Text" TextChanged="OnAmountChanged" />
+                        <Label x:Name="PortionHint" FontSize="13" TextColor="#6F6A62" IsVisible="False" />
+                        <Label Text="填入克或毫升数" FontSize="13" TextColor="#6F6A62" />
+                        <VerticalStackLayout x:Name="DefinitionFields" Spacing="8" IsVisible="False">
+                            <Label x:Name="PerHundredLabel" Text="每 100 克" FontSize="14" TextColor="#6F6A62" />
+                            <Entry x:Name="CaloriesEntry" Placeholder="热量，千卡" Keyboard="Text" />
+                            <Entry x:Name="ProteinEntry" Placeholder="蛋白质，克" Keyboard="Text" />
+                            <Entry x:Name="FatEntry" Placeholder="脂肪，克" Keyboard="Text" />
+                            <Entry x:Name="CarbsEntry" Placeholder="碳水，克" Keyboard="Text" />
+                            <Entry x:Name="FiberEntry" Placeholder="膳食纤维，克" Keyboard="Text" />
+                            <Entry x:Name="SodiumEntry" Placeholder="钠，毫克" Keyboard="Text" />
+                            <Entry x:Name="CalciumEntry" Placeholder="钙，毫克" Keyboard="Text" />
+                            <Entry x:Name="IronEntry" Placeholder="铁，毫克" Keyboard="Text" />
+                            <Entry x:Name="ZincEntry" Placeholder="锌，毫克" Keyboard="Text" />
+                            <Entry x:Name="PotassiumEntry" Placeholder="钾，毫克" Keyboard="Text" />
+                            <Entry x:Name="VitaminB1Entry" Placeholder="维生素B1，毫克" Keyboard="Text" />
+                            <Entry x:Name="VitaminCEntry" Placeholder="维生素C，毫克" Keyboard="Text" />
+                            <Entry x:Name="VitaminDEntry" Placeholder="维生素D，微克" Keyboard="Text" />
+                            <Entry x:Name="Omega3Entry" Placeholder="Omega-3，克" Keyboard="Text" />
+                        </VerticalStackLayout>
+                        <Label x:Name="FoodErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+                        <Button Text="保存" Clicked="OnSaveFood" BackgroundColor="#22C55E" TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border x:Name="SupplementCard" Padding="14" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="补剂" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="点一项，再填份数。默认 1 份。" FontSize="13" TextColor="#6F6A62" />
+                        <Label Text="维生素" FontSize="14" TextColor="#6F6A62" />
+                        <VerticalStackLayout x:Name="VitaminHost" Spacing="8" />
+                        <Label Text="乳清蛋白" FontSize="14" TextColor="#6F6A62" />
+                        <VerticalStackLayout x:Name="ProteinHost" Spacing="8" />
+                        <Label Text="健身补剂" FontSize="14" TextColor="#6F6A62" />
+                        <VerticalStackLayout x:Name="FitnessHost" Spacing="8" />
+                        <Label x:Name="SupplementDetailLabel" FontSize="13" TextColor="#6F6A62" LineBreakMode="WordWrap" />
+                        <Entry x:Name="ServingsEntry" Placeholder="份数，例如 1" Keyboard="Text" />
+                        <Label x:Name="SupplementErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+                        <Button Text="保存" Clicked="OnSaveSupplement" BackgroundColor="#22C55E" TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border x:Name="SunCard" Padding="14" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="晒太阳" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="按晒的时间、露肤度和季节估算维生素D。" FontSize="13" TextColor="#6F6A62" />
+                        <Entry x:Name="MinutesEntry" Placeholder="晒了多少分钟" Keyboard="Text" TextChanged="OnSunInputChanged" />
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="8">
+                            <Button x:Name="FaceHandsButton" Text="脸和手" Clicked="OnFaceHandsClicked" />
+                            <Button x:Name="ForearmsButton" Grid.Column="1" Text="加上前臂" Clicked="OnForearmsClicked" />
+                            <Button x:Name="ShortsButton" Grid.Row="1" Text="短袖短裤" Clicked="OnShortsClicked" />
+                            <Button x:Name="MostSkinButton" Grid.Row="1" Grid.Column="1" Text="大半身" Clicked="OnMostSkinClicked" />
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="8">
+                            <Button x:Name="SpringButton" Text="春" Clicked="OnSpringClicked" />
+                            <Button x:Name="SummerButton" Grid.Column="1" Text="夏" Clicked="OnSummerClicked" />
+                            <Button x:Name="AutumnButton" Grid.Column="2" Text="秋" Clicked="OnAutumnClicked" />
+                            <Button x:Name="WinterButton" Grid.Column="3" Text="冬" Clicked="OnWinterClicked" />
+                        </Grid>
+                        <Label Text="隔着玻璃、涂了防晒晒太阳没有效果哈" FontSize="13" TextColor="#8C3A32" />
+                        <Label Text="建议每周晒3次太阳，每次15~30分钟" FontSize="13" TextColor="#6F6A62" />
+                        <Label x:Name="SunResultLabel" FontSize="14" TextColor="#6F6A62" />
+                        <Label x:Name="SunErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+                        <Button Text="保存" Clicked="OnSaveSun" BackgroundColor="#22C55E" TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Button Grid.Row="1" Text="关闭" Clicked="OnCancel" />
+        </Grid>
+    </Border>
+</ContentView>

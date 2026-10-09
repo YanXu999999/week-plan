@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.BodyChartPage"
+             BackgroundColor="#F7F8FB">
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20,12,20,16" RowSpacing="8">
+        <HorizontalStackLayout Spacing="8">
+            <HorizontalStackLayout Spacing="4" Padding="0,8" BackgroundColor="#F7F8FB">
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBack" />
+                </HorizontalStackLayout.GestureRecognizers>
+                <Label Text="←" FontSize="20" TextColor="#22C55E" VerticalOptions="Center" InputTransparent="True" />
+                <Label Text="返回" FontSize="16" TextColor="#22C55E" VerticalOptions="Center" InputTransparent="True" />
+            </HorizontalStackLayout>
+            <Label Text="身体数据" FontSize="22" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <VerticalStackLayout Grid.Row="1" Spacing="8">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8" RowDefinitions="Auto,Auto,Auto" RowSpacing="8">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="腰围" FontSize="13" TextColor="#8E95A3" />
+                    <Entry x:Name="WaistEntry" Keyboard="Text" Placeholder="厘米" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Spacing="4">
+                    <Label Text="左臂围" FontSize="13" TextColor="#8E95A3" />
+                    <Entry x:Name="LeftArmEntry" Keyboard="Text" Placeholder="厘米" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="1" Spacing="4">
+                    <Label Text="右臂围" FontSize="13" TextColor="#8E95A3" />
+                    <Entry x:Name="RightArmEntry" Keyboard="Text" Placeholder="厘米" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="4">
+                    <Label Text="胸围" FontSize="13" TextColor="#8E95A3" />
+                    <Entry x:Name="ChestEntry" Keyboard="Text" Placeholder="厘米" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="2" Spacing="4">
+                    <Label Text="左腿围" FontSize="13" TextColor="#8E95A3" />
+                    <Entry x:Name="LeftThighEntry" Keyboard="Text" Placeholder="厘米" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="2" Grid.Column="1" Spacing="4">
+                    <Label Text="右腿围" FontSize="13" TextColor="#8E95A3" />
+                    <Entry x:Name="RightThighEntry" Keyboard="Text" Placeholder="厘米" />
+                </VerticalStackLayout>
+            </Grid>
+            <Label x:Name="ErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+            <Button x:Name="SaveButton" Text="保存" Clicked="OnSave"
+                    BackgroundColor="#22C55E" TextColor="White" CornerRadius="22" HeightRequest="48" FontAttributes="Bold" />
+        </VerticalStackLayout>
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout x:Name="ChartHost" Spacing="12" />
+        </ScrollView>
+    </Grid>
+</ContentView>

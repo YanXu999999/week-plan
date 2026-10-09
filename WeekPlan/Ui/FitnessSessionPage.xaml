@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.FitnessSessionPage"
+             BackgroundColor="#F7F8FB">
+    <Grid RowDefinitions="Auto,*" Padding="20,12,20,20" RowSpacing="8">
+        <HorizontalStackLayout Spacing="4" Padding="0,8" HorizontalOptions="Start" BackgroundColor="#F7F8FB">
+            <HorizontalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackClicked" />
+            </HorizontalStackLayout.GestureRecognizers>
+            <Label Text="←" FontSize="20" TextColor="#22C55E" VerticalOptions="Center" InputTransparent="True" />
+            <Label Text="返回" FontSize="16" TextColor="#22C55E" VerticalOptions="Center" InputTransparent="True" />
+        </HorizontalStackLayout>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="16">
+                <Label x:Name="MissingLabel" Text="这条任务已经没有了" FontSize="20" IsVisible="False" />
+                <VerticalStackLayout x:Name="Form" Spacing="16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label x:Name="PhaseLabel" FontSize="14" TextColor="#C47B2B" />
+                        <Label x:Name="TitleLabel" FontSize="30" FontAttributes="Bold" />
+                        <Label x:Name="ProgressLabel" FontSize="22" />
+                        <Label x:Name="CountdownLabel" FontSize="64" FontAttributes="Bold" TextColor="#22C55E" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <Button x:Name="StartButton" Text="开始" Clicked="OnStartClicked" BackgroundColor="#22C55E" TextColor="White" HeightRequest="56" FontSize="20" CornerRadius="14" />
+                    <Button x:Name="CompleteButton" Text="本组完成" Clicked="OnCompleteClicked" BackgroundColor="#22C55E" TextColor="White" HeightRequest="56" FontSize="20" CornerRadius="14" />
+                    <Label x:Name="DoneLabel" Text="今天这组训练已经完成" FontSize="18" TextColor="#22C55E" HorizontalTextAlignment="Center" />
+                    <Label x:Name="CardioHint" Text="点开始后倒计时，到点自动完成。" FontSize="13" TextColor="#6F6A62" IsVisible="False" />
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="状态" FontSize="14" TextColor="#6F6A62" />
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                            <Button x:Name="NotStartedButton" Text="未完成" Clicked="OnNotStartedClicked" />
+                            <Button x:Name="InProgressButton" Grid.Column="1" Text="进行中" Clicked="OnInProgressClicked" />
+                            <Button x:Name="DoneButton" Grid.Column="2" Text="完成" Clicked="OnDoneClicked" />
+                        </Grid>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout x:Name="StrengthTools" Spacing="16">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <Border x:Name="SetsCard" Padding="12" BackgroundColor="#FFFCF7">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="组数" TextColor="#6F6A62" />
+                                <Label x:Name="SetsLabel" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                <Grid ColumnDefinitions="*,*">
+                                    <Button x:Name="DecreaseSetsButton" Text="-" Clicked="OnDecreaseSets" />
+                                    <Button x:Name="IncreaseSetsButton" Grid.Column="1" Text="+" Clicked="OnIncreaseSets" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border x:Name="RestCard" Grid.Column="1" Padding="12" BackgroundColor="#FFFCF7">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="间隔" TextColor="#6F6A62" />
+                                <Label x:Name="RestLabel" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                <Grid ColumnDefinitions="*,*">
+                                    <Button x:Name="DecreaseRestButton" Text="-" Clicked="OnDecreaseRest" />
+                                    <Button x:Name="IncreaseRestButton" Grid.Column="1" Text="+" Clicked="OnIncreaseRest" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <Label Text="改间隔不会改掉正在走的这次休息。" FontSize="13" TextColor="#6F6A62" />
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout x:Name="PresetHost" Spacing="8" />
+                    </ScrollView>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.WeightChartPage"
+             BackgroundColor="#F7F8FB">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20,12,20,20" RowSpacing="12">
+        <HorizontalStackLayout Spacing="8">
+            <HorizontalStackLayout Spacing="4" Padding="0,8" BackgroundColor="#F7F8FB">
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBack" />
+                </HorizontalStackLayout.GestureRecognizers>
+                <Label Text="←" FontSize="20" TextColor="#22C55E" VerticalOptions="Center" InputTransparent="True" />
+                <Label Text="返回" FontSize="16" TextColor="#22C55E" VerticalOptions="Center" InputTransparent="True" />
+            </HorizontalStackLayout>
+            <Label Text="体重" FontSize="22" FontAttributes="Bold" TextColor="#1B1F2A" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <Border x:Name="ChartCard" Grid.Row="1" Padding="12,12,12,4" BackgroundColor="White">
+            <Grid RowDefinitions="Auto,*">
+                <Label x:Name="AverageLabel" FontSize="16" TextColor="#1B1F2A" />
+                <Grid Grid.Row="1">
+                    <Grid x:Name="ChartHost" />
+                    <Label x:Name="EmptyLabel" Text="还没有体重" FontSize="16" TextColor="#8E95A3"
+                           HorizontalOptions="Center" VerticalOptions="Center" IsVisible="False" />
+                </Grid>
+            </Grid>
+        </Border>
+        <VerticalStackLayout Grid.Row="2" Spacing="8">
+            <Label Text="今日体重（千克）" FontSize="13" TextColor="#8E95A3" />
+            <Entry x:Name="TodayEntry" Keyboard="Text" Placeholder="千克" />
+            <Label x:Name="ErrorLabel" TextColor="#8C3A32" IsVisible="False" />
+            <Button x:Name="SaveButton" Text="保存" Clicked="OnSave"
+                    BackgroundColor="#22C55E" TextColor="White" CornerRadius="22" HeightRequest="48" FontAttributes="Bold" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.GoalHelpPopup"
+             HorizontalOptions="Fill"
+             VerticalOptions="Center">
+    <Border x:Name="Card" Padding="18" BackgroundColor="#FFFCF7">
+        <Grid RowDefinitions="*,Auto" MaximumHeightRequest="640" RowSpacing="12">
+            <ScrollView>
+                <Label x:Name="BodyLabel" FontSize="15" TextColor="#1B1F2A" LineBreakMode="WordWrap" />
+            </ScrollView>
+            <Button Grid.Row="1" Text="关闭" Clicked="OnClose" />
+        </Grid>
+    </Border>
+</ContentView>

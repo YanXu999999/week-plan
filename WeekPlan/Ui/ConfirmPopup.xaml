@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeekPlan.App.Ui.ConfirmPopup"
+             HorizontalOptions="Center"
+             WidthRequest="320">
+    <Border x:Name="Card" Padding="20" BackgroundColor="#FFFCF7">
+        <VerticalStackLayout Spacing="12">
+            <Label x:Name="MessageLabel" FontSize="22" FontAttributes="Bold" />
+            <Label Text="删掉之后，这条任务和它的完成记录都会没有。" TextColor="#6F6A62" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <Button Text="取消" Clicked="OnCancel" />
+                <Button Grid.Column="1" Text="删除" Clicked="OnDelete" BackgroundColor="#8C3A32" TextColor="White" />
+            </Grid>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>
