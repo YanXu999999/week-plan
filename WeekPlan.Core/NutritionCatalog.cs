@@ -5,7 +5,7 @@ public sealed record CatalogFood(string Name, string Unit, NutrientValues PerHun
 public static partial class NutritionCatalog
 {
     // 食谱内容变化时加一，启动时用来跳过重复写入。
-    public const int Revision = 2;
+    public const int Revision = 3;
 
     // 每 100 克或每 100 毫升的参考成分。
     public static IReadOnlyList<CatalogFood> BuiltIn { get; } = CreateBuiltIn();

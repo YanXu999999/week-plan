@@ -26,18 +26,34 @@ public static class NutritionPortions
             return new("一勺", 15);
         if (name.Contains('油'))
             return new("一勺", 10);
-        if (name is "白酒")
+        if (name is "浓缩咖啡")
+            return new("一小杯", 30);
+        if (name is "白酒" or "烧酒" or "威士忌" or "白兰地" or "伏特加" or "朗姆酒")
             return new("一小杯", 50);
-        if (name is "啤酒")
+        if (name.Contains("啤酒", StringComparison.Ordinal))
             return new("一罐", 330);
-        if (name.Contains('酒'))
+        if (name.Contains('酒') || name is "干红" or "干白")
             return new("一杯", 100);
-        if (name is "可乐" or "雪碧")
+        if (name.Contains("可乐", StringComparison.Ordinal)
+            || name.Contains("汽水", StringComparison.Ordinal)
+            || name.Contains("气泡水", StringComparison.Ordinal)
+            || name is "雪碧" or "芬达" or "美年达" or "七喜" or "沙士")
             return new("一罐", 330);
+        if (name is "澳白")
+            return new("一杯", 180);
         if (name.Contains("奶茶", StringComparison.Ordinal)
             || name.Contains("奶昔", StringComparison.Ordinal)
-            || name is "拿铁" or "卡布奇诺" or "摩卡")
+            || name.Contains("拿铁", StringComparison.Ordinal)
+            || name is "卡布奇诺" or "摩卡" or "美式咖啡" or "焦糖玛奇朵" or "奶盖茶" or "烧仙草" or "水果茶" or "柠檬茶")
             return new("一杯", 350);
+        if (name is "冰红茶" or "冰绿茶" or "凉茶")
+            return new("一瓶", 500);
+        if (name is "乳酸菌饮料")
+            return new("一瓶", 100);
+        if (name is "椰子水")
+            return new("一瓶", 330);
+        if (name.EndsWith('露'))
+            return new("一罐", 250);
         return new("一杯", 250);
     }
 
@@ -432,6 +448,50 @@ public static class NutritionPortions
         Add("一碗", 300, "福州佛跳墙");
         Add("一份", 30, "金华火腿");
         Add("一个", 200, "红烧兔头");
+
+        Add("一块", 40, "巧克力", "黑巧克力", "白巧克力");
+        Add("一把", 20, "巧克力豆");
+        Add("一根", 40, "巧克力棒", "蛋白棒");
+        Add("一块", 30, "巧克力威化", "沙琪玛", "桃酥");
+        Add("一包", 50, "薯片");
+        Add("一包", 40, "虾条", "芝士条", "玉米片", "妙脆角");
+        Add("一包", 30, "虾片", "雪饼", "仙贝", "辣条");
+        Add("几块", 30, "饼干", "苏打饼干", "消化饼干", "曲奇");
+        Add("两块", 25, "威化", "夹心饼干");
+        Add("一根", 15, "蛋卷");
+        Add("一个", 30, "蛋黄派");
+        Add("一块", 40, "绿豆糕", "凤梨酥", "瑞士卷");
+        Add("一个", 80, "月饼", "铜锣烧");
+        Add("一块", 80, "蛋糕", "奶油蛋糕", "芝士蛋糕");
+        Add("一个", 50, "杯子蛋糕", "肉松饼", "蛋黄酥");
+        Add("一个", 15, "马卡龙");
+        Add("一个", 40, "泡芙", "老婆饼", "鲜花饼", "麻薯");
+        Add("一个", 60, "甜甜圈", "青团");
+        Add("一块", 70, "华夫饼");
+        Add("一串", 80, "糖葫芦");
+        Add("两颗", 10, "糖果", "硬糖", "水果糖", "薄荷糖");
+        Add("几颗", 20, "软糖");
+        Add("两颗", 12, "牛奶糖");
+        Add("一把", 15, "棉花糖", "鱿鱼丝", "丁香鱼");
+        Add("一片", 2, "口香糖");
+        Add("一球", 70, "冰淇淋");
+        Add("一支", 70, "雪糕");
+        Add("一支", 60, "冰棍");
+        Add("一杯", 100, "布丁");
+        Add("一杯", 120, "果冻");
+        Add("一把", 20, "牛肉干", "葡萄干", "芒果干");
+        Add("两片", 20, "猪肉脯", "烤鱼片");
+        Add("一块", 50, "鱼豆腐");
+        Add("一包", 5, "海苔");
+        Add("两颗", 15, "话梅");
+        Add("几片", 20, "山楂片", "地瓜干");
+        Add("一块", 20, "果丹皮");
+        Add("一把", 40, "银鱼", "白饭鱼", "柳叶鱼", "凤尾鱼");
+        Add("一把", 50, "多春鱼", "白条鱼");
+        Add("一条", 80, "嘎鱼", "梅童鱼", "龙头鱼", "豆腐鱼", "黄辣丁");
+        Add("一条", 150,
+            "江团", "虹鳟", "加州鲈", "塘鲺", "花鲢", "白鲢", "真鲷", "黑鲷",
+            "东星斑", "老虎斑", "老鼠斑", "龙趸", "海鲈");
 
         return map;
     }

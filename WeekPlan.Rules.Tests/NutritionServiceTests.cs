@@ -71,11 +71,11 @@ public class NutritionServiceTests
 
         var day = await service.GetDayAsync(today);
         Assert.Equal(3, day.Entries.Count);
-        Assert.Equal(266d, day.Entries[0].Nutrients.Calories);
-        Assert.Equal(130d, day.Entries[0].Nutrients.Sodium);
-        Assert.Equal(0.14, day.Entries[0].Nutrients.VitaminB1);
+        Assert.Equal(46d, day.Entries[0].Nutrients.Calories);
         Assert.Equal(115d, day.Entries[1].Nutrients.Calories);
-        Assert.Equal(46d, day.Entries[2].Nutrients.Calories);
+        Assert.Equal(266d, day.Entries[2].Nutrients.Calories);
+        Assert.Equal(130d, day.Entries[2].Nutrients.Sodium);
+        Assert.Equal(0.14, day.Entries[2].Nutrients.VitaminB1);
         Assert.Equal(427d, day.Current.Calories);
 
         var next = await service.GetDayAsync(tomorrow);
@@ -85,7 +85,7 @@ public class NutritionServiceTests
 
         await service.DeleteIntakeAsync(day.Entries[0].Id);
         var afterDelete = await service.GetDayAsync(today);
-        Assert.Equal(161d, afterDelete.Current.Calories);
+        Assert.Equal(381d, afterDelete.Current.Calories);
 
         Assert.Equal("目标不能小于 0", await service.SaveTargetsAsync(new TargetDraft(-1, 150, 60, 250)));
         Assert.Null(await service.SaveTargetsAsync(new TargetDraft(1800, 140, 50, 200)));

@@ -37,7 +37,7 @@ public sealed class NutritionService
             .ToListAsync()
             .ConfigureAwait(false);
         var entries = rows
-            .OrderBy(item => item.Id)
+            .OrderByDescending(item => item.Id)
             .Select(item => new IntakeEntry(
                 item.Id,
                 item.EpochDay,
